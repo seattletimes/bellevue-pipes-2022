@@ -1,0 +1,70 @@
+@import "seattletimes";
+
+@aspect-ratio: 8/10;
+
+.interactive {
+  max-width: 700px;
+  margin: auto;
+
+  .graphic-chatter {
+     // text-align: left;
+  }
+
+  .directions {
+    color: @df-middle-gray;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+}
+
+.aspect-ratio-outer {
+  width: 100%;
+  position: relative;
+  .aspect-ratio-inner {
+    padding-bottom: percentage(@aspect-ratio);
+    position: relative;
+  }
+  leaflet-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    &:not([ready]) {
+      display: none;
+    }
+  }
+}
+
+.legend {
+  margin-bottom: 1em;
+  text-align: center;
+  .color {
+    // display: inline-block;
+    // padding: 0px 5px;
+    font-size: 16px;
+    .square {
+      vertical-align: middle;
+      width: 30px;
+
+      display: inline-block;
+      margin-right: 5px;
+      &.allPipes { background-color: #B79878; height: 1px; }
+      &.acPipes { background-color: #2475B0; height: 4px; }
+      &.acSixPipes { background-color: #294B6D; height: 4px; }
+
+    }
+    span { vertical-align: middle; }
+  }
+
+}
+
+
+
+
+.leaflet-popup-content-wrapper { max-width: 300px; }
+.popuptext p {  margin: 0 !important; }

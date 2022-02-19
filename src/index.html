@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <% if (!json.project.embedded) { %>
+      <%= t.include("partials/_dataLayer.html") %>
+      <script src="https://seattle-times.zeustechnology.com/main.js" async></script>
+      <script src="https://www.seattletimes.com/wp-content/plugins/st-advertising/dist/st-projects-bundle.js" async></script>
+    <% } %>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtm.html") %>
+    <% } %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtmNoScript.html") %>
+    <% } %>
+    <responsive-child id="interactive" class="interactive">
+      <!-- content goes here -->
+      <h3 class="graphic-hed">
+            Some header here
+      </h3>
+      <h4 class="graphic-chatter">Some chatter here</h4>
+
+      <div class="directions">Select a bolded pipe for more information</div>
+
+      <div class="legend">
+        <div class="color">
+          <div class="square allPipes"></div><span>Bellevue city border</span>
+        </div>
+        <div class="color">
+          <div class="square acPipes"></div><span>4-inch asbestos cement pipes</span>
+        </div>
+        <div class="color">
+          <div class="square acSixPipes"></div><span>6-inch asbestos cement pipes</span>
+        </div>
+      </div>
+
+      <div id="map" class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+
+          <leaflet-map zoom=7>
+            <tile-layer layer="cartoPositron"></tile-layer>
+          </leaflet-map>
+
+        </div>
+      </div>
+
+      <figcaption class="source-container">
+          <p class="data-source">Source: <a href="https://cobgis.maps.arcgis.com/apps/webappviewer/index.html?id=e1748172d4f34f1eb3710032a351cd57" target="_blank" rel="nofollow noreferrer noopener">City of Bellevue Map Viewer</a></p>
+          <p class="art-credit">Lauren Flannery / The Seattle Times</p>
+        </figcaption>
+    </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
