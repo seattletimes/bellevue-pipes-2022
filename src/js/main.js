@@ -23,7 +23,7 @@ acPipesJSON.features.forEach(function(f) {
     f.properties[prop] = f.properties[prop] != null ? f.properties[prop] : "No assigned address";
   });
   ["INSTALLDAT"].forEach(function(prop) {
-    f.properties[prop] = f.properties[prop] != null ? f.properties[prop] : "No build date";
+    f.properties[prop] = f.properties[prop] != null ? (f.properties[prop]).split("-")[0] : "No build date";
   });
 });
 
